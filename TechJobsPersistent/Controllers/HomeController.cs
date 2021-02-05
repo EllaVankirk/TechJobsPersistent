@@ -38,7 +38,6 @@ namespace TechJobsPersistent.Controllers
         }
 
         [HttpPost]
-        [Route("")]
         public IActionResult ProcessAddJobForm(AddJobViewModel addJobViewModel)
         {
             if (ModelState.IsValid)
@@ -54,7 +53,7 @@ namespace TechJobsPersistent.Controllers
 
                 return Redirect("/Index");
             }
-            return View("Index");
+            return View("AddJob", addJobViewModel);
         }
 
         public IActionResult Detail(int id)
