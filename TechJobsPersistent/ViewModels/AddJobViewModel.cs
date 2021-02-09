@@ -13,21 +13,28 @@ namespace TechJobsPersistent.ViewModels
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(80, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 80 characters")]
         public string Name { get; set; }
+
         [Required(ErrorMessage = "Employer is required.")]
          public int EmployerId { get; set; }
-        public List<SelectListItem> Employer { get; set; }
 
-        public AddJobViewModel(List<Employer> employers)
+        public List<Skill> Skills { get; set; }
+        public int SkillId { get; set; }
+        public List<SelectListItem> Employers { get; set; }
+
+        public AddJobViewModel(List<Employer> employers, List<Skill> skills)
         {
-            Employer = new List<SelectListItem>();
+            Employers = new List<SelectListItem>();
+            Skills = skills;
 
             foreach (var employer in employers)
             {
-                Employer.Add(new SelectListItem
-                {
-                    Value = employer.Id.ToString(),
-                    Text = employer.Name
-                });
+                Employers.Add(
+                    new SelectListItem
+                    {
+                        Value = employer.Id.ToString(),
+                        Text = employer.Name
+                    }
+                );
             }
         }
         public AddJobViewModel()

@@ -3,16 +3,26 @@
 
 <form asp-controller="Home" asp-action="ProcessAddJobForm" method="post">
     <div class="form-group">
-        <label>Name</label>
-        <input class="form-control" />
-        <span></span>
+        <label asp-for="Name">Name</label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="EmployerId">Employers</label>
-        <select asp-for="EmployerId" asp-items="Model.Employer"></select>
+        <select asp-for="EmployerId" asp-items="Model.Employers"></select>
+        <span asp-validation-for="EmployerId"></span>
+
+    </div>
+    <div class="form-group">
+         @foreach (var skill in Model.Skills)
+        {
+            <label asp-for="Skills"> @skill.Name </label>
+            <input type="checkbox" name="selectedSkills" value="@skill.Id" />
+        }
     </div>
     <input type="submit" value="Add Job" />
+    <p><a asp-controller="Skill" asp-action="Add">Add Skill</a></p>
     <p><a asp-controller="Employer" asp-action="Add">Add Employer</a></p>
 
 </form>
