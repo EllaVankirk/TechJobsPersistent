@@ -11,8 +11,8 @@
 --where location = "St. Louis City"
 
 --Part 3
---select skills.name, description
+--select skills.name, skills.description
 --from skills
---inner join jobs on skills.id = jobs.id
+--left outer join jobskills on skills.id = jobskills.SkillId
+--where jobskills.JobId is not null
 --order by skills.name ASC;
-
